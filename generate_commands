@@ -1,0 +1,45 @@
+#!/usr/bin/ruby
+
+# generate_commands.rb
+# Troy Bell
+# CIT 483, Fall 2017
+# 9/11/2017
+
+users = {'smithj1' => 'John Smith', 'doej1' => "Jane Doe", 'publicj1' => "John Q. Public", 'mccordt' => "Tim McCord" }
+words = ['Care' , 'less', 'Toys', 'game', 'rand', 'Ruby', 'star', 'Lite']
+seps = ['−', '%', '&', '@', '#', '!' ]
+users.each_key do |user|
+
+# password generation, creating a random password from the array words and seps
+  words1 = words.sample
+  words2 = words.sample
+  sep = seps.sample
+  #  p words1
+  # p words2
+  #p sep
+
+# Salting and basic encryption
+range = [*'a'..'z',*'A'..'Z']Array.new(16){range.sample }.join
+salt = range
+#p "#{salt}"
+
+words1 = words1.crypt(salt)
+words2 = words2.crypt(salt)
+
+
+# Enhanced (SHA-512) encryption
+words1 = words1.crypt_r($6$ + salt)
+words2 = words2.crypt_r($6$ + salt)
+
+# putting user and encrypted words together in a hash to print
+pwd = [words1, sep, words2]
+user_pass_hash {users, pwd}
+
+usr_pwd = system(useradd -m -p '#{pwd}'
+
+end
+
+
+# outputs the users and its new encryption into one line
+#puts "#{words1}#{sep}#{words2}"
+#puts "#{users}#{words1}#{sep}#{words2}"
