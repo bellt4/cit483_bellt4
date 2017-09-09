@@ -52,4 +52,3 @@ end
   #puts "#{words1}#{sep}#{words2}"
   #puts "#{users}#{words1}#{sep}#{words2}"
   puts "#{users} #{pass}"
-© 2017 GitHub, Inc.
