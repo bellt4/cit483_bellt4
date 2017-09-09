@@ -33,9 +33,9 @@ words2 = words2.crypt_r($6$ + salt)
 
 # putting user and encrypted words together in a hash to print
 pwd = [words1, sep, words2]
-user_pass_hash {users, pwd}
+user_pass_s1 {users, pwd}
 
-usr_pwd = system(useradd -m -p '#{pwd}'
+usr_pwd = system(useradd -m -p '#{users}' '#{pwd}')
 
 end
 
